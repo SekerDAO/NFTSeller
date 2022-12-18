@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 pragma solidity ^0.8.6;
 
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Seller is Ownable {
@@ -24,7 +24,7 @@ contract Seller is Ownable {
         );
         require(msg.value == price * _amount, "Incorrect eth amount");
         for (uint256 i; i <= _amount - 1; i++) {
-            IERC721(NFT).transferFrom(issuer, msg.sender, minted);
+            IERC721Upgradeable(NFT).transferFrom(issuer, msg.sender, minted);
             minted++;
         }
     }
